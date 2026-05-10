@@ -1,0 +1,105 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.carousel-item {
+    position: relative; /* Make overlay position relative to item */
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: none;
+}
+
+.carousel-item p {
+    color: white; /* Change text color for all <p> tags inside carousel items */
+}
+
+.carousel-overlay {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.5);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fcfcfc;
+    text-shadow: 0 0 6px rgba(255,255,255,0.8);
+    z-index: 10; /* Ensure it’s above the image */
+}
+
+#countdown-timer {
+    color: aliceblue; /* Change text color for the countdown timer */
+}
+
+@media (max-width: 600px) {
+    .carousel-item {
+        height: 200px;
+    }
+
+    .carousel-overlay {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ------- TABLE STYLES ------- */
+
+table {
+    padding: 5px;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    background: #2c2c34;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+table thead {
+    background: #006400;
+    color: white;
+}
+table th, table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #444;
+}
+table tbody tr:nth-child(even) {
+    background-color: #24242a;
+}
+table tbody tr:hover {
+    background-color: #383842;
+    transition: 0.3s;
+}
+
+#matchTableBody td {
+    color: aliceblue !important; /* Force aliceblue color for table cells */
+}
+
+/* ==== PAGE ==== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #212126;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.text-red {
+    color: aliceblue;
+}
+
+.text-blue {
+    color: aliceblue;
+}
+
+.text-green {
+    color: aliceblue;
+}
