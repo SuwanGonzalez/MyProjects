@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCSR</title>
+    <link rel="stylesheet" href="./styles/consistency.css">
+    <link rel="stylesheet" href="./styles/nav.css">
+    <link rel="stylesheet" href="./styles/record.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./scripts/mcsrcarousel.js" defer></script>
+</head>
+<body>
+    <nav>
+        <span class="logo">SUWAN</span>
+        <a href="./Project.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <h1>Minecraft Speedrunning</h1>
+    <div class="carousel"></div>
+    <script>
+        const nextGameDate = new Date("October 15, 2025 23:42:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = nextGameDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown-timer").innerText = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById("countdown-timer").innerText = "Live has started!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+    <h2>Runs Records</h2>
+    <table id="spacexTable" border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Overworld</th>
+                <th>Bastion</th>
+                <th>End Enter</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="mcsrTableBody">
+            <!-- Rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+    <script>
+        const supabaseUrl = "https://etqoygahwfwclfgqoxqk.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cW95Z2Fod2Z3Y2xmZ3FveHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzODU4MzksImV4cCI6MjA4Njk2MTgzOX0.UV3l-ynuuaaDd9anLfa197o0kaQiT1PggyjsS-xn9sQ";
+
+        const supa = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function loadRuns() {
+            const table = document.getElementById("mcsrTableBody");
+
+            const { data, error } = await supa
+                .from("entries")
+                .select("*")
+                .eq("category", "mcsr")
+                .order("date", { ascending: false });
+
+            if (error) {
+                console.error("Error loading runs:", error);
+                table.innerHTML = "<tr><td colspan='4'>Error loading runs.</td></tr>";
+                return;
+            }
+
+            table.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                table.innerHTML = "<tr><td colspan='4'>No runs yet.</td></tr>";
+                return;
+            }
+
+            data.forEach(match => {
+                const [year, month, day] = match.date.split("-");
+                const pacificDate = new Date(year, month - 1, day);
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${pacificDate.toLocaleDateString("en-US", {
+                            timeZone: "America/Los_Angeles",
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric"
+                        })}</td>
+                        <td>${match.time || "time"}</td>
+                        <td>${match.overworld || "overworld"}</td>
+                        <td>${match.bastion || "bastion"}</td>
+                        <td>${match.end_enter || "end enter"}</td>
+                        <td>${match.notes}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        loadRuns();    
+        async function startPage() {
+        await loadRuns();
+        initializeCarousel(); 
+        }
+
+        startPage();
+
+        function formatDate(dateString) {
+        const [year, month, day] = dateString.split("-");
+        return new Date(year, month, day)
+            .toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Mexican Team</title>
+    <link rel="stylesheet" href="./styles/consistency.css">
+    <link rel="stylesheet" href="./styles/nav.css">
+    <link rel="stylesheet" href="./styles/record.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./scripts/mexicocarousel.js" defer></script>
+    <style>
+        .countdown {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        #countdown-timer {
+            color: orange; /* Change countdown timer text color to orange */
+        }
+
+        .carousel-item p {
+            color: white; /* Change text color for all <p> tags inside carousel items */
+        }
+
+        #spacexTableBody td {
+            color: aliceblue; /* Change text color for table cells */
+        }
+        #matchesTable td:nth-child(4),
+        #matchesTable th:nth-child(4) {
+            max-width: 50vw;
+            white-space: wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body> 
+    <nav>
+        <span class="logo">SUWAN</span>
+        <a href="./Project">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav> 
+    <h1>Mexican National Soccer Team</h1>
+    <div class="carousel"></div>
+    <div class="countdown">
+        <h2>Countdown to Next Game</h2>
+        <p id="countdown-timer">Loading...</p>
+    </div>
+    <hr>
+    <ul id="upcomingList"></ul>
+
+    <script>
+        // Set the date and time for the next game
+        const nextGameDate = new Date("March 28, 2026 08:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = nextGameDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown-timer").innerText = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById("countdown-timer").innerText = "Game has started!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+    <h2>Match Records</h2>
+    <table id="matchesTable" border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Score</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="matchTableBody">
+            <!-- Rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+    <script>
+        const supabaseUrl = "https://etqoygahwfwclfgqoxqk.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cW95Z2Fod2Z3Y2xmZ3FveHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzODU4MzksImV4cCI6MjA4Njk2MTgzOX0.UV3l-ynuuaaDd9anLfa197o0kaQiT1PggyjsS-xn9sQ";
+
+        const supa = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function loadMatches() {
+            const table = document.getElementById("matchTableBody");
+
+            const { data, error } = await supa
+                .from("entries")
+                .select("*")
+                .eq("category", "soccer")
+                .order("date", { ascending: false });
+
+            if (error) {
+                console.error("Error loading matches:", error);
+                table.innerHTML = "<tr><td colspan='4'>Error loading matches.</td></tr>";
+                return;
+            }
+
+            table.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                table.innerHTML = "<tr><td colspan='4'>No matches yet.</td></tr>";
+                return;
+            }
+
+            data.forEach(match => {
+                const [year, month, day] = match.date.split("-");
+                const pacificDate = new Date(year, month - 1, day);
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${pacificDate.toLocaleDateString("en-US", {
+                            timeZone: "America/Los_Angeles",
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric"
+                        })}</td>
+                        <td>${match.opponent || "opponent"}</td>
+                        <td>${match.score || "TBA"}</td>
+                        <td>${match.notes}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        loadMatches();    
+        async function startPage() {
+            await loadMatches();
+            initializeCarousel(); 
+        }
+
+        startPage();
+
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split("-");
+            return new Date(year, month - 1, day)
+                .toLocaleDateString("en-US", {
+                    timeZone: "America/Los_Angeles",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+        }
+    </script>
+</body>
+</html>
