@@ -20,6 +20,14 @@ label {
     display: block;
     margin-top: 15px;
 }
+select {
+    width: 20%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
 input, textarea {
     width: 20%;
     padding: 10px;
