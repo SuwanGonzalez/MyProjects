@@ -49,7 +49,7 @@
     <div class="carousel"></div>
     <hr>
     <ul id="upcomingList"></ul>
-    
+
     <h2>Match Records</h2>
     <table id="matchesTable" border="1">
         <thead>
@@ -76,7 +76,7 @@
             const { data, error } = await supa
                 .from("entries")
                 .select("*")
-                .eq("category", "soccer")
+                .eq("category", "baseball")
                 .order("date", { ascending: false });
 
             if (error) {
