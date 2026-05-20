@@ -1,27 +1,26 @@
 let currentIndex = 0;
 
-function formatMissionName(mission) {
-    return mission
+function formatOpponentName(opponent) {
+    return opponent
         .toLowerCase()
-        .replace(/\s+/g, '_'); // Replace spaces with hyphens
+        .replace(/\s+/g, '-'); // Replace spaces with hyphens
 }
 
 function createCarouselFromTable() {
     const carousel = document.querySelector('.carousel');
     const rows = Array.from(document.querySelectorAll('tbody tr'));
-    const last5 = rows.slice(0, 5); // Take first 5 rows from table (latest missions)
+    const last5 = rows.slice(0, 5); // last 5 matches
 
     last5.forEach((row) => {
         const cells = row.querySelectorAll('td');
-        const date = cells[0].textContent.trim();    // Mission Date
-        const mission = cells[1].textContent.trim(); // Mission Name
-        const status = cells[2].textContent.trim();  // Status
-        const notes = cells[3]?.textContent.trim() || ""; // Notes (optional)
-        const formattedName = formatMissionName(mission);
+        const date = cells[0].textContent.trim();      // Get match date
+        const opponent = cells[1].textContent.trim();
+        const score = cells[2].textContent.trim();
+        const formattedName = formatOpponentName(opponent);
 
         const item = document.createElement('div');
         item.className = 'carousel-item';
-        item.style.backgroundImage = `url('images/spacex/Something_Starlink.jpg')`;
+        item.style.backgroundImage = `url('images/countries/${formattedName}.jpg')`;
         item.style.display = 'none';
 
         const overlay = document.createElement('div');
@@ -29,16 +28,23 @@ function createCarouselFromTable() {
 
         const dateText = document.createElement('p');
         dateText.textContent = `Date: ${date}`;
+        //dateText.classList.add('text-blue'); // Apply a CSS class for blue text
 
-        const missionText = document.createElement('p');
-        missionText.textContent = `Mission: ${mission}`;
+        const opponentText = document.createElement('p');
+        opponentText.textContent = `Opponent: ${opponent}`;
+        //opponentText.style.color = 'orange'; // Inline style for orange text
 
-        const statusText = document.createElement('p');
-        statusText.textContent = `Status: ${status}`;
+        const scoreText = document.createElement('p');
+        scoreText.textContent = `Final Score: ${score}`;
+        //if (score.includes('Mexico')) {
+        //    scoreText.style.color = 'green'; // Green for Mexico wins
+        //} else {
+        //    scoreText.style.color = 'color: aliceblue'; // Red for losses
+        //}
 
         overlay.appendChild(dateText);
-        overlay.appendChild(missionText);
-        overlay.appendChild(statusText);
+        overlay.appendChild(opponentText);
+        overlay.appendChild(scoreText);
 
         item.appendChild(overlay);
         carousel.appendChild(item);
@@ -60,5 +66,3 @@ function initializeCarousel() {
     items[0].style.display = 'block';
     setInterval(showNextItem, 3000);
 }
-
-document.addEventListener('DOMContentLoaded', initializeCarousel);
