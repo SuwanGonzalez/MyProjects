@@ -20,7 +20,7 @@ function createCarouselFromTable() {
 
         const item = document.createElement('div');
         item.className = 'carousel-item';
-        item.style.backgroundImage = `url('images/countries/${formattedName}.jpg')`;
+        item.style.backgroundImage = `url('images/baseball/${formattedName}.jpg')`;
         item.style.display = 'none';
 
         const overlay = document.createElement('div');
