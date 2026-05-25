@@ -76,7 +76,7 @@
             const { data, error } = await supa
                 .from("entries")
                 .select("*")
-                .eq("category", "baseball")
+                .eq("category", "other")
                 .order("date", { ascending: false });
 
             if (error) {
@@ -104,8 +104,7 @@
                             month: "short",
                             day: "numeric"
                         })}</td>
-                        <td>${match.team || "Ballers or Giants"}
-                        <td>${match.opponent || "Opponent"}</td>
+                        <td>${match.opponent || "opponent"}</td>
                         <td>${match.score || "TBA"}</td>
                         <td>${match.notes}</td>
                     </tr>
