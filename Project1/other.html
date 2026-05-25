@@ -45,7 +45,7 @@
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
     </nav> 
-    <h1>Baseball</h1>
+    <h1>Others</h1>
     <div class="carousel"></div>
     <hr>
     <ul id="upcomingList"></ul>
@@ -104,8 +104,11 @@
                             month: "short",
                             day: "numeric"
                         })}</td>
-                        <td>${match.opponent || "opponent"}</td>
+                        <td>${match.team || "Team"}</td> 
+                        <td>${match.opponent || "Opponent"}</td>
                         <td>${match.score || "TBA"}</td>
+                        <td>${match.mission || "Mission"}</td>
+                        <td>${match.status || "Status"}</td>
                         <td>${match.notes}</td>
                     </tr>
                 `;
