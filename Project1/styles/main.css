@@ -99,3 +99,11 @@ footer {
 .mcsr-card {
     background-image: url('../images/minecraft-speedrun-guide-5.png');
 }
+
+.baseball-card {
+    background-image: url('../images/scrappy.png');
+}
+
+.other-card {
+    background-image: url('../images/');
+}
