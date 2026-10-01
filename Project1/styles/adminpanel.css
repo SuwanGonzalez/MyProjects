@@ -48,3 +48,67 @@ button {
 button:hover {
     background: #1f4fb3;
 }
+/* Container layout: aligns sidebar and panels side-by-side */
+.tab-container {
+    display: flex;
+    max-width: 700px;
+    font-family: sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  /* Sidebar layout: stacks buttons vertically */
+  .tab-headers {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border-right: 1px solid #ccc;
+    width: 150px; /* Width of your tab sidebar */
+    flex-shrink: 0;
+    
+  }
+  
+  /* Style the buttons inside the vertical sidebar */
+  .tab-btn {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left; /* Left-align the text for vertical lists */
+    transition: 0.3s;
+  }
+  
+  /* Change background on hover */
+  .tab-btn:hover {
+    background-color: #ddd;
+  }
+  
+  /* Active vertical tab style */
+  .tab-btn.active {
+    background-color: #fff;
+    border-left: 4px solid #007BFF; /* Indigo indicator moves to the left edge */
+    font-weight: bold;
+  }
+  
+  /* Container for all panels to let them fill remaining space */
+  .tab-panels {
+    flex-grow: 1;
+  }
+  
+  /* Hide tab content by default */
+  .tab-content {
+    display: none;
+    padding: 20px;
+  }
+  
+  /* Show active tab content */
+  .tab-content.active {
+    display: block;
+  }
+  
+
+  
