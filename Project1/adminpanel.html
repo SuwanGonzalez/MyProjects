@@ -1,128 +1,254 @@
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="stylesheet" href="./styles/adminpanel.css">
+    <link rel="stylesheet" href="adminpanel.css">
 </head>
 
 <body>
 
-<div class="tab-container">
+    <h1 class="admin-title">Content Admin</h1>
+    <p class="admin-subtitle">Add and manage your website entries</p>
 
-    <form id="form">
+    <div class="admin-actions">
+        <button type="button" id="manageBtn">Manage Entries</button>
+    </div>
 
-        <!-- Tab Headers -->
+
+    <div class="tab-container">
+
+        <!-- TAB SIDEBAR -->
         <div class="tab-headers">
-            <button type="button" class="tab-btn active" onclick="switchTab(event, 'tab1')">SpaceX</button>
-            <button type="button" class="tab-btn" onclick="switchTab(event, 'tab2')">Soccer</button>
-            <button type="button" class="tab-btn" onclick="switchTab(event, 'tab3')">Baseball</button>
-            <button type="button" class="tab-btn" onclick="switchTab(event, 'tab4')">MCSR</button>
-            <button type="button" class="tab-btn" onclick="switchTab(event, 'tab5')">Other</button>
+
+            <button type="button" class="tab-btn active"
+                onclick="switchTab(event, 'tab1')">
+                SpaceX
+            </button>
+
+            <button type="button" class="tab-btn"
+                onclick="switchTab(event, 'tab2')">
+                Soccer
+            </button>
+
+            <button type="button" class="tab-btn"
+                onclick="switchTab(event, 'tab3')">
+                Baseball
+            </button>
+
+            <button type="button" class="tab-btn"
+                onclick="switchTab(event, 'tab4')">
+                MCSR
+            </button>
+
+            <button type="button" class="tab-btn"
+                onclick="switchTab(event, 'tab5')">
+                Other
+            </button>
+
         </div>
 
 
-        <!-- SpaceX -->
-        <div id="tab1" class="tab-content active">
-            <h3>SpaceX</h3>
+        <!-- FORM -->
+        <form id="form">
 
-            <input type="date" id="date"><br><br>
-            <input type="text" id="mission" placeholder="Mission Name"><br>
-            <input type="text" id="status" placeholder="Launch Status"><br>
+            <!-- SPACEX -->
+            <div id="tab1" class="tab-content active">
 
-            <br>
+                <h3>SpaceX</h3>
 
-            <textarea id="notes" placeholder="Notes"></textarea>
+                <input type="date" id="date">
 
-            <br>
+                <input type="text"
+                    id="mission"
+                    placeholder="Mission Name">
 
-            <button type="submit">Submit</button>
+                <input type="text"
+                    id="status"
+                    placeholder="Launch Status">
+
+                <textarea
+                    id="notes"
+                    placeholder="Notes"></textarea>
+
+                <button type="submit">
+                    Save Entry
+                </button>
+
+            </div>
+
+
+            <!-- SOCCER -->
+            <div id="tab2" class="tab-content">
+
+                <h3>Soccer</h3>
+
+                <input type="date" id="date">
+
+                <input type="text"
+                    id="opponent"
+                    placeholder="Opponent">
+
+                <input type="text"
+                    id="score"
+                    placeholder="Score">
+
+                <textarea
+                    id="notes"
+                    placeholder="Notes"></textarea>
+
+                <button type="submit">
+                    Save Entry
+                </button>
+
+            </div>
+
+
+            <!-- BASEBALL -->
+            <div id="tab3" class="tab-content">
+
+                <h3>Baseball</h3>
+
+                <input type="date" id="date">
+
+                <input type="text"
+                    id="team"
+                    placeholder="My Team">
+
+                <input type="text"
+                    id="score"
+                    placeholder="Score">
+
+                <textarea
+                    id="notes"
+                    placeholder="Notes"></textarea>
+
+                <button type="submit">
+                    Save Entry
+                </button>
+
+            </div>
+
+
+            <!-- MCSR -->
+            <div id="tab4" class="tab-content">
+
+                <h3>MCSR</h3>
+
+                <input type="date" id="date">
+
+                <input type="text"
+                    id="time"
+                    placeholder="Run Time">
+
+                <input type="text"
+                    id="overworld"
+                    placeholder="Overworld">
+
+                <input type="text"
+                    id="bastion"
+                    placeholder="Bastion">
+
+                <input type="text"
+                    id="end_enter"
+                    placeholder="End Enter">
+
+                <textarea
+                    id="notes"
+                    placeholder="Notes"></textarea>
+
+                <button type="submit">
+                    Save Entry
+                </button>
+
+            </div>
+
+
+            <!-- OTHER -->
+            <div id="tab5" class="tab-content">
+
+                <h3>Other</h3>
+
+                <input type="date" id="date">
+
+                <input type="text"
+                    id="team"
+                    placeholder="My Team">
+
+                <input type="text"
+                    id="opponent"
+                    placeholder="Opponent">
+
+                <input type="text"
+                    id="score"
+                    placeholder="Score">
+
+                <input type="text"
+                    id="mission"
+                    placeholder="Mission Name">
+
+                <input type="text"
+                    id="status"
+                    placeholder="Launch Status">
+
+                <input type="text"
+                    id="overworld"
+                    placeholder="Overworld">
+
+                <input type="text"
+                    id="bastion"
+                    placeholder="Bastion">
+
+                <input type="text"
+                    id="end_enter"
+                    placeholder="End Enter">
+
+                <input type="text"
+                    id="time"
+                    placeholder="Run Time">
+
+                <textarea
+                    id="notes"
+                    placeholder="Notes"></textarea>
+
+                <button type="submit">
+                    Save Entry
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================
+         MANAGE ENTRIES
+    ========================== -->
+
+    <div id="managePanel" class="manage-panel">
+
+        <div class="manage-header">
+
+            <div>
+                <h2>Manage Entries</h2>
+                <p>Edit or delete existing content.</p>
+            </div>
+
+            <button type="button" id="closeManage">
+                ×
+            </button>
+
         </div>
 
 
-        <!-- Soccer -->
-        <div id="tab2" class="tab-content">
-            <h3>Soccer</h3>
-
-            <input type="date" id="date"><br>
-            <input type="text" id="opponent" placeholder="Opponent"><br>
-            <input type="text" id="score" placeholder="Score"><br>
-
-            <br>
-
-            <textarea id="notes" placeholder="Notes"></textarea>
-
-            <br>
-
-            <button type="submit">Submit</button>
+        <div id="entriesList">
+            Loading entries...
         </div>
 
+    </div>
 
-        <!-- Baseball -->
-        <div id="tab3" class="tab-content">
-            <h3>Baseball</h3>
-
-            <input type="date" id="date"><br>
-            <input type="text" id="team" placeholder="My Team"><br>
-            <input type="text" id="score" placeholder="Score"><br>
-
-            <br>
-
-            <textarea id="notes" placeholder="Notes"></textarea>
-
-            <br>
-
-            <button type="submit">Submit</button>
-        </div>
-
-
-        <!-- MCSR -->
-        <div id="tab4" class="tab-content">
-            <h3>MCSR</h3>
-
-            <input type="date" id="date"><br>
-            <input type="text" id="time" placeholder="Run Time"><br>
-            <input type="text" id="overworld" placeholder="Overworld"><br>
-            <input type="text" id="bastion" placeholder="Bastion"><br>
-            <input type="text" id="end_enter" placeholder="End Enter"><br>
-
-            <br>
-
-            <textarea id="notes" placeholder="Notes"></textarea>
-
-            <br>
-
-            <button type="submit">Submit</button>
-        </div>
-
-
-        <!-- Other -->
-        <div id="tab5" class="tab-content">
-            <h3>Other</h3>
-
-            <input type="date" id="date"><br>
-
-            <input type="text" id="team" placeholder="My Team"><br>
-            <input type="text" id="opponent" placeholder="Opponent"><br>
-            <input type="text" id="score" placeholder="Score"><br>
-
-            <input type="text" id="mission" placeholder="Mission Name"><br>
-            <input type="text" id="status" placeholder="Launch Status"><br>
-
-            <input type="text" id="overworld" placeholder="Overworld"><br>
-            <input type="text" id="bastion" placeholder="Bastion"><br>
-            <input type="text" id="end_enter" placeholder="End Enter"><br>
-            <input type="text" id="time" placeholder="Run Time"><br>
-
-            <br>
-
-            <textarea id="notes" placeholder="Notes"></textarea>
-
-            <br>
-
-            <button type="submit">Submit</button>
-        </div>
-
-    </form>
-
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="./scripts/adminpanel.js"></script>
+    <script src="adminpanel.js"></script>
+
 </body>
+</html>
