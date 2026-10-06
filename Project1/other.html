@@ -111,11 +111,15 @@
                             month: "short",
                             day: "numeric"
                         })}</td>
-                        <td>${match.team || "Team"}</td> 
-                        <td>${match.opponent || "Opponent"}</td>
-                        <td>${match.score || "TBA"}</td>
-                        <td>${match.mission || "Mission"}</td>
-                        <td>${match.status || "Status"}</td>
+                        <td>${match.team || "N/A"}</td> 
+                        <td>${match.opponent || "N/A"}</td>
+                        <td>${match.score || "N/A"}</td>
+                        <td>${match.mission || "N/A"}</td>
+                        <td>${match.status || "N/A"}</td>
+                        <td>${match.time || "N/A"}</td>
+                        <td>${match.overworld || "N/A"}</td>
+                        <td>${match.bastion || "N/A"}</td>
+                        <td>${match.end_enter || "N/A"}</td> 
                         <td>${match.notes}</td>
                     </tr>
                 `;
