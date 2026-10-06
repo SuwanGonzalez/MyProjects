@@ -3,252 +3,179 @@
 <head>
     <link rel="stylesheet" href="adminpanel.css">
 </head>
-
 <body>
-
     <h1 class="admin-title">Content Admin</h1>
     <p class="admin-subtitle">Add and manage your website entries</p>
-
     <div class="admin-actions">
         <button type="button" id="manageBtn">Manage Entries</button>
     </div>
 
-
     <div class="tab-container">
-
         <!-- TAB SIDEBAR -->
         <div class="tab-headers">
-
             <button type="button" class="tab-btn active"
                 onclick="switchTab(event, 'tab1')">
                 SpaceX
             </button>
-
             <button type="button" class="tab-btn"
                 onclick="switchTab(event, 'tab2')">
                 Soccer
             </button>
-
             <button type="button" class="tab-btn"
                 onclick="switchTab(event, 'tab3')">
                 Baseball
             </button>
-
             <button type="button" class="tab-btn"
                 onclick="switchTab(event, 'tab4')">
                 MCSR
             </button>
-
             <button type="button" class="tab-btn"
                 onclick="switchTab(event, 'tab5')">
                 Other
             </button>
-
         </div>
-
 
         <!-- FORM -->
         <form id="form">
-
             <!-- SPACEX -->
             <div id="tab1" class="tab-content active">
-
                 <h3>SpaceX</h3>
-
                 <input type="date" id="date">
-
                 <input type="text"
                     id="mission"
                     placeholder="Mission Name">
-
                 <input type="text"
                     id="status"
                     placeholder="Launch Status">
-
                 <textarea
                     id="notes"
                     placeholder="Notes"></textarea>
-
                 <button type="submit">
                     Save Entry
                 </button>
-
             </div>
-
 
             <!-- SOCCER -->
             <div id="tab2" class="tab-content">
-
                 <h3>Soccer</h3>
-
                 <input type="date" id="date">
-
                 <input type="text"
                     id="opponent"
                     placeholder="Opponent">
-
                 <input type="text"
                     id="score"
                     placeholder="Score">
-
                 <textarea
                     id="notes"
                     placeholder="Notes"></textarea>
-
                 <button type="submit">
                     Save Entry
                 </button>
-
             </div>
-
 
             <!-- BASEBALL -->
             <div id="tab3" class="tab-content">
-
                 <h3>Baseball</h3>
-
                 <input type="date" id="date">
-
                 <input type="text"
                     id="team"
                     placeholder="My Team">
-
                 <input type="text"
                     id="score"
                     placeholder="Score">
-
                 <textarea
                     id="notes"
                     placeholder="Notes"></textarea>
-
                 <button type="submit">
                     Save Entry
                 </button>
-
             </div>
-
 
             <!-- MCSR -->
             <div id="tab4" class="tab-content">
-
                 <h3>MCSR</h3>
-
                 <input type="date" id="date">
-
                 <input type="text"
                     id="time"
                     placeholder="Run Time">
-
                 <input type="text"
                     id="overworld"
                     placeholder="Overworld">
-
                 <input type="text"
                     id="bastion"
                     placeholder="Bastion">
-
                 <input type="text"
                     id="end_enter"
                     placeholder="End Enter">
-
                 <textarea
                     id="notes"
                     placeholder="Notes"></textarea>
-
                 <button type="submit">
                     Save Entry
                 </button>
-
             </div>
-
 
             <!-- OTHER -->
             <div id="tab5" class="tab-content">
-
                 <h3>Other</h3>
-
                 <input type="date" id="date">
-
                 <input type="text"
                     id="team"
                     placeholder="My Team">
-
                 <input type="text"
                     id="opponent"
                     placeholder="Opponent">
-
                 <input type="text"
                     id="score"
                     placeholder="Score">
-
                 <input type="text"
                     id="mission"
                     placeholder="Mission Name">
-
                 <input type="text"
                     id="status"
                     placeholder="Launch Status">
-
                 <input type="text"
                     id="overworld"
                     placeholder="Overworld">
-
                 <input type="text"
                     id="bastion"
                     placeholder="Bastion">
-
                 <input type="text"
                     id="end_enter"
                     placeholder="End Enter">
-
                 <input type="text"
                     id="time"
                     placeholder="Run Time">
-
                 <textarea
                     id="notes"
                     placeholder="Notes"></textarea>
-
                 <button type="submit">
                     Save Entry
                 </button>
-
             </div>
-
         </form>
-
     </div>
-
 
     <!-- =========================
          MANAGE ENTRIES
     ========================== -->
-
     <div id="managePanel" class="manage-panel">
-
         <div class="manage-header">
-
             <div>
                 <h2>Manage Entries</h2>
                 <p>Edit or delete existing content.</p>
             </div>
-
             <button type="button" id="closeManage">
                 ×
             </button>
-
         </div>
-
 
         <div id="entriesList">
             Loading entries...
         </div>
-
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="adminpanel.js"></script>
-
 </body>
 </html>
